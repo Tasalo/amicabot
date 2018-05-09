@@ -1,0 +1,17 @@
+service: amica-service
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  memorySize: 128
+  stage: ${opt:stage, "dev"}
+  region: eu-central-1
+  environment:
+      ${file(./${self:provider.stage}-env.yml)}
+
+functions:
+  cron:
+    handler: handler.run
+    events:
+      # Invoke Lambda function every minute
+      - schedule: cron(0 7 ? * MON-FRI *)

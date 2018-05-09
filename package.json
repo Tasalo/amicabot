@@ -1,0 +1,11 @@
+{
+  "name": "amica-service",
+  "version": "1.0.0",
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.17.1",
+    "lodash": "^4.17.4",
+    "serverless": "^1.27.2"
+  }
+}
