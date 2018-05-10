@@ -18,7 +18,7 @@ module.exports.run = (event, context) => {
         "channel": "#"+channel,
         "username": "Amicabot",
         "icon_emoji": ":female-cook:",
-        "text": "*Amicassa tarjolla <http://www.amica.fi/ibm/|tänään>* ```"+constructText(response)+"```"
+        "text": "*Amicassa tarjolla <http://www.amica.fi/ibm/|tänään> | Amica's menu for <http://www.amica.fi/en/restaurants/ei-avoimet-ravintolat/ibm/|today>* ```"+constructText(response)+"```"
       }
       axios.post(slackWebHook, JSON.stringify(slackMsg));
     })
@@ -50,7 +50,7 @@ function iterateDayMenu(weeklyMenu){
         }       
       };  
     });
-    reject("No lunch today!");
+    reject("Ravintola suljettu | Restaurant closed");
   });
 }
 
