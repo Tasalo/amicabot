@@ -16,9 +16,9 @@ module.exports.run = (event, context) => {
       // Sending to Slack
       const slackMsg = {
         "channel": "#"+channel,
-        "username": "Amicabot",
+        "username": "RestaurantBot",
         "icon_emoji": ":female-cook:",
-        "text": "*Amicassa tarjolla <http://www.amica.fi/ibm/|tänään> | Amica's menu for <http://www.amica.fi/en/restaurants/ei-avoimet-ravintolat/ibm/|today>* ```"+constructText(response)+"```"
+        "text": "*Ravintola TestEat tarjoaa <https://www.fazerfoodco.fi/testeat|tänään> | Restaurant TestEat's menu for <https://www.fazerfoodco.fi/en/testeat|today>* ```"+constructText(response)+"```"
       }
       axios.post(slackWebHook, JSON.stringify(slackMsg));
     })
@@ -26,7 +26,7 @@ module.exports.run = (event, context) => {
       console.log(error);
       const slackMsg = {
         "channel": "#"+channel,
-        "username": "Amicabot",
+        "username": "RestaurantBot",
         "icon_emoji": ":female-cook:",
         "text": error
       }
@@ -57,10 +57,10 @@ function iterateDayMenu(weeklyMenu){
 const constructText = function(message) {
   console.log("constructText");
   const template =
-  `<% _.forEach(message.SetMenus, function(menu) { %><%= menu.Name %>
+`<% _.forEach(message.SetMenus, function(menu) { %><%= menu.Name %>
   <% _.forEach(menu.Components, function(component) { %><%= component %>
   <% }); %>
-  <% }); %>Avoinna: <%= message.LunchTime %>`;
+<% }); %>Avoinna: <%= message.LunchTime %>`;
 
   var compiled = _.template(template);
   const description = compiled({ 'message': message });
